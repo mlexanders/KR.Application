@@ -1,0 +1,63 @@
+﻿@using MusalovKR.ViewModel;
+@model PageViewModel
+@{
+    ViewData["Title"] = "Paginated List";
+}
+
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.ID_Posts)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.ID_Posts)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.Tittle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.Tittle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.PayCheck)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.PayCheck)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.Responsibility)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.Responsibility)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.Requirements)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.Requirements)
+        </dd>
+    </dl>
+
+    <div class="d-flex flex-row">
+        @if (Model.CanShowPrevious)
+        {
+            <a class="btn btn-primary btn-sm me-3" asp-action="Index" asp-controller="Home" asp-route-skip=@(Model.Index - 1)>Назад</a>
+        }
+        else
+        {
+            <a class="btn btn-secondary btn-sm me-3 disabled">Назад</a>
+        }
+        @if (Model.CanShowNext)
+        {
+            <a class="btn btn-primary btn-sm " asp-action="Index" asp-controller="Home" asp-route-skip=@(Model.Index + 1)>Вперед</a>
+        }
+        else
+        {
+            <a class="btn btn-secondary btn-sm me-3 disabled">Вперед</a>
+        }
+    </div>
+</div>
+

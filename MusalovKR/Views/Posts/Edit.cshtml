@@ -1,0 +1,37 @@
+﻿@model Common.Posts
+
+<h4>Posts</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID_Posts" />
+            <div class="form-group">
+                <label asp-for="Tittle" class="control-label"></label>
+                <input asp-for="Tittle" class="form-control" />
+                <span asp-validation-for="Tittle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayCheck" class="control-label"></label>
+                <input asp-for="PayCheck" class="form-control" />
+                <span asp-validation-for="PayCheck" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Responsibility" class="control-label"></label>
+                <input asp-for="Responsibility" class="form-control" />
+                <span asp-validation-for="Responsibility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Requirements" class="control-label"></label>
+                <input asp-for="Requirements" class="form-control" />
+                <span asp-validation-for="Requirements" class="text-danger"></span>
+            </div>
+            <div class="form-group m-2">
+                <input type="submit" value="Сохранить" class="btn btn-primary btn-sm m-lg-1" />
+                <a class="btn btn-danger btn-sm" asp-action="Index">Назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+

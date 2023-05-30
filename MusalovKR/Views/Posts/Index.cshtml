@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Common.Posts>
+
+<div class="container-fluid p-4">
+    <p class="md-1">
+            <a class="btn btn-primary btn-sm" asp-action="Create">Добавить</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Tittle)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.PayCheck)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Responsibility)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Requirements)</th>
+                <th scope="col">Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model is not null)
+            {
+                @foreach (var item in Model) {
+                    <tr>
+                        <th scope="row">@Html.DisplayFor(modelItem => item.ID_Posts)</th>
+                        <td>@Html.DisplayFor(modelItem => item.Tittle)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PayCheck)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Responsibility)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Requirements)</td>
+                        <td class="d-flex flex-row">
+                            <a class="btn btn-primary btn-sm m-2" asp-action="Edit" asp-route-id="@item.ID_Posts">Изменить</a>
+                            <a class="btn btn-primary btn-sm m-2" asp-action="Details" asp-route-id="@item.ID_Posts">Детали</a>
+                            <a class="btn btn-primary btn-sm m-2" asp-action="Delete" asp-route-id="@item.ID_Posts">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+ </div>

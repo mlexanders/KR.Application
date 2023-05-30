@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Common.Posts>
+
+
+<form method="post">
+    <div class="form-group">
+        <label for="Execution">Запрос:</label>
+        <input type="text" value="SELECT * FROM Posts ORDER BY PayCheck" name="query" class="form-control" id="exampleInputEmail1" placeholder="SELECT * FROM Posts">
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tittle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PayCheck)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Responsibility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Requirements)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    @if (Model is not null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tittle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayCheck)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Responsibility)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Requirements)
+                    </td>
+                    <td class="d-flex flex-row">
+                        <a class="btn btn-primary btn-sm m-2"asp-controller="Posts" asp-action="Edit" asp-route-id="@item.ID_Posts">Edit</a>
+                        <a class="btn btn-primary btn-sm m-2"asp-controller="Posts" asp-action="Delete" asp-route-id="@item.ID_Posts">Delete</a>
+                    </td>
+                </tr>
+            }
+    }
+    </tbody>
+</table>
