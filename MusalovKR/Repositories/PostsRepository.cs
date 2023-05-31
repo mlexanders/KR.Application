@@ -1,4 +1,5 @@
 ﻿using Common;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace MusalovKR.Repositories
@@ -45,7 +46,28 @@ namespace MusalovKR.Repositories
 
         public List<Posts> ReadWithScript(string script)
         {
-            return dbContext.Posts.FromSqlRaw(script).ToList();
+            try
+            {
+                var a =  dbContext.Posts.FromSqlRaw(script).ToList();
+                return a ;
+            }
+            catch (Exception)
+            {
+                throw new(Execution(script));
+            }
+        }
+
+        public string Execution(string query)
+        {
+            var param = new SqlParameter
+            {
+                ParameterName = "@Count",
+                SqlDbType = System.Data.SqlDbType.Float,
+                Direction = System.Data.ParameterDirection.Output
+            };
+
+            dbContext.Database.ExecuteSqlRaw(query, param);
+            return param.Value.ToString();
         }
     }
 }

@@ -16,8 +16,16 @@ namespace MusalovKR.Controllers
         {
             if (query == null) return View();
 
-            var result = repository.ReadWithScript(query);
-            return View(result);
+            try
+            {
+                var result = repository.ReadWithScript(query);
+                return View(result);
+            }
+            catch (Exception e)
+            {
+                ViewData.Add("response", e.Message);
+                return View();
+            }
         }
     }
 }

@@ -1,0 +1,52 @@
+﻿@using Common;
+@model ExecutionScript
+
+@using (Html.BeginForm("Index", "StoredProcedure", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="Execution">Запрос:</label>
+        <input type="text" asp-for="@Model.Script" value="@Model.Script" class="form-control" placeholder="EXEC PR @@I, @@J, @@Result output">
+    </div>
+
+    @if (Model is not null)
+    {
+        @for (int i = 0; i < Model.InputVariables.Count(); i++)
+        {
+            <div class="form-group">
+                <label class="control-label">@Model.InputVariables[i].Name</label>
+                @Html.HiddenFor(model => model.InputVariables[i].Name)
+
+                <input asp-for="@Model.InputVariables[i].Value" class="form-control" />
+            </div>
+        }
+        @for (int i = 0; i < Model.OutputVariables.Count(); i++)
+        {
+            <div class="form-group">
+                @*<label class="control-label">@Model.OutputVariables[i].Name</label>*@
+                @Html.HiddenFor(model => model.OutputVariables[i].Name)
+
+                @*<input asp-for="@Model.OutputVariables[i].Value" class="form-control" />*@
+            </div>
+        }
+    }
+
+    <div class="form-group m-2">
+        <input type="submit" value="Send" asp-action="Index" class="btn btn-primary btn-sm m-lg-1" />
+    </div>
+}
+
+@if (Model is not null && Model.Result is not null)
+{
+    <div class="card mt-2">
+        <div class="card-header">
+            Результат запроса:
+        </div>
+        <div class="card-body" css="background-color: white">
+            <blockquote class="blockquote mb-0">
+                <p>@Model.Result</p>
+                <footer class="blockquote-footer">@Model.Script</footer>
+            </blockquote>
+        </div>
+    </div>
+
+}
