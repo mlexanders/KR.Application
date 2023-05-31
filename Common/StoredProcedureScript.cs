@@ -5,7 +5,7 @@
         public List<ViewSqlParameter> SqlParameters { get; set; } = null!;
         public string Script { get; set; } = null!;
     }
-    
+
     public class ExecutionScript
     {
         public string Script { get; set; }

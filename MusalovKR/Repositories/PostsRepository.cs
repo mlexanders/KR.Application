@@ -48,8 +48,8 @@ namespace MusalovKR.Repositories
         {
             try
             {
-                var a =  dbContext.Posts.FromSqlRaw(script).ToList();
-                return a ;
+                var a = dbContext.Posts.FromSqlRaw(script).ToList();
+                return a;
             }
             catch (Exception)
             {

@@ -50,7 +50,7 @@ namespace MusalovKR.Controllers
             else
             {
                 model.Result = Execution(model);
-                return View(model); 
+                return View(model);
             }
         }
 
@@ -64,7 +64,6 @@ namespace MusalovKR.Controllers
                 {
                     ParameterName = query.InputVariables[i].Name,
                     Value = query.InputVariables[i].Value,
-                    //SqlDbType = SqlDbType.Int, //query.SqlParameters[i].Value is not null ? GetType(query.SqlParameters[i].Value) : null,
                     Direction = query.InputVariables[i].Value is null ? ParameterDirection.Output : ParameterDirection.Input,
                     Size = int.MaxValue
                 });
